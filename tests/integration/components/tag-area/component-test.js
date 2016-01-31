@@ -6,20 +6,28 @@ moduleForComponent('tag-area', 'Integration | Component | tag area', {
 });
 
 test('it renders', function(assert) {
-  
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
-
   this.render(hbs`{{tag-area}}`);
+  assert.equal(this.$('.tag-area').length, 1, 'Component includes a textarea with class tag-area');
+});
 
-  assert.equal(this.$().text().trim(), '');
+test('template can set rows and cols', function(assert) {
+  this.set('rowVal', 10);
+  this.set('colVal', 50);
+  this.render(hbs`{{tag-area rowCount=rowVal colCount=colVal}}`);
+  assert.equal(this.$('.tag-area').attr('rows'), 10, 'Correct count of rows found on tag-area');
+  assert.equal(this.$('.tag-area').attr('cols'), 50, 'Correct count of rows found on tag-area');
 
-  // Template block usage:" + EOL +
-  this.render(hbs`
-    {{#tag-area}}
-      template block text
-    {{/tag-area}}
-  `);
+  this.set('rowVal', 5);
+  this.set('colVal', 20);
+  assert.equal(this.$('.tag-area').attr('rows'), 5, 'Correct count of rows found on tag-area');
+  assert.equal(this.$('.tag-area').attr('cols'), 20, 'Correct count of rows found on tag-area');
+});
 
-  assert.equal(this.$().text().trim(), 'template block text');
+test('it displays bound text', function(assert) {
+  this.set('chars', "abc 123");
+  this.render(hbs`{{tag-area screenText=chars}}`);
+  assert.equal(this.$('.tag-area').val(), "abc 123", 'Bound text is displayed');
+
+  this.set('chars', "xyz");
+  assert.equal(this.$('.tag-area').val(), "xyz", 'Bound text is updated');
 });
