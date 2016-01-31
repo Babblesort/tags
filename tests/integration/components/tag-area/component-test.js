@@ -8,6 +8,11 @@ moduleForComponent('tag-area', 'Integration | Component | tag area', {
 test('it renders', function(assert) {
   this.render(hbs`{{tag-area}}`);
   assert.equal(this.$('.tag-area').length, 1, 'Component includes a textarea with class tag-area');
+  assert.equal(this.$('.tag-area').css('background-color'), 'rgba(0, 0, 0, 0)', 'tagArea has correct background style');
+  assert.equal(this.$('.pill-area').css('top'), this.$('.tag-area').css('top'), 'pillArea matches tagArea position');
+  assert.equal(this.$('.pill-area').css('left'), this.$('.tag-area').css('left'), 'pillArea matches tagArea position');
+  assert.equal(this.$('.pill-area').css('width'), this.$('.tag-area').css('width'), 'pillArea matches tagArea position');
+  assert.equal(this.$('.pill-area').css('height'), this.$('.tag-area').css('height'), 'pillArea matches tagArea position');
 });
 
 test('template can set rows and cols', function(assert) {

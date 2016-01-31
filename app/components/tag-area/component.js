@@ -17,6 +17,11 @@ export default Ember.Component.extend({
 	}),
 	didInsertElement() {
 		this.set('$tagArea', Ember.$('.tag-area'));
+		this.set('$pillArea', Ember.$('.pill-area'));
+		Ember.$('.pill-area').css('top', this.get('$tagArea').css('top'));
+		Ember.$('.pill-area').css('left', this.get('$tagArea').css('left'));
+		Ember.$('.pill-area').css('height', this.get('$tagArea').css('height'));
+		Ember.$('.pill-area').css('width', this.get('$tagArea').css('width'));
 	},
 	actions: {
 		keyUp(fullText, e) {

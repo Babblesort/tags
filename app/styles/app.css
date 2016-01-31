@@ -1,0 +1,9 @@
+.tag-area {
+	background-color: transparent;
+}
+
+.pill-area {
+	z-index: -1;
+	position: absolute;
+	background-color: gray;
+}
