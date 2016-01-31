@@ -1,24 +1,35 @@
 import Ember from 'ember';
 
-function tagArea() {
-	return Ember.$('.tag-area');
-}
+const AtKeycode = 50;
 
-function selStart() {
-	return tagArea().prop('selectionStart');
+function isSearchTrigger(text, cursorIndex) {
+	return cursorIndex === 1 || text.slice(cursorIndex - 2, cursorIndex - 1) === ' ';
 }
 
 export default Ember.Component.extend({
 	rowCount: 15,
 	colCount: 80,
 	screenText: '',
-	cursorIndex: -1,
+	searchAtive: false,
+	$tagArea: null,
+	tagAreaEl: Ember.computed('$tagArea', function() {
+		return this.get('$tagArea').get(0);
+	}),
+	didInsertElement() {
+		this.set('$tagArea', Ember.$('.tag-area'));
+	},
 	actions: {
-		keyUp() {
-			this.set('cursorIndex', selStart());
+		keyUp(fullText, e) {
+			if(e.shiftKey && e.keyCode === AtKeycode) {
+				let cursorIndex = this.get('tagAreaEl').selectionStart;
+
+				if(isSearchTrigger(fullText, cursorIndex)) {
+					this.set('searchActive', true);
+				}
+			}
 		},
-		gotFocus() {
-			this.set('cursorIndex', selStart());
+		searchEnd() {
+			this.set('searchActive', false);
 		}
 	}
 });
