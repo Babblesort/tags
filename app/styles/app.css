@@ -1,9 +1,13 @@
 .tag-area {
 	background-color: transparent;
 	position: absolute;
+	font-size: 10pt;
+   	font-family: Arial;
 }
 
 .pill-area {
 	z-index: -1;
 	position: absolute;
+	font-size: 10pt;
+   	font-family: Arial;
 }
