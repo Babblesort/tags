@@ -8,6 +8,7 @@
 .pill-area {
 	z-index: -1;
 	position: absolute;
+	padding: 3px;
 	font-size: 10pt;
    	font-family: Arial;
 }

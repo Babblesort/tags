@@ -10,7 +10,7 @@ export default Ember.Component.extend({
 	rowCount: 15,
 	colCount: 80,
 	screenText: '',
-	searchAtive: false,
+	searchActive: false,
 	$tagArea: null,
 	tagAreaEl: Ember.computed('$tagArea', function() {
 		return this.get('$tagArea').get(0);
