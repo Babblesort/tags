@@ -1,6 +1,5 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import Ember from 'ember';
 
 moduleForComponent('tag-area', 'Integration | Component | tag area', {
   integration: true
@@ -31,22 +30,4 @@ test('it displays bound text', function(assert) {
 
   this.set('chars', "xyz");
   assert.equal(this.$('.tag-area').val(), "xyz", 'Bound text is updated');
-});
-
-test('it knows the cursor position', function(assert) {
-
-  assert.expect(1);
-  let done = assert.async();
-
-  this.set('chars', "abc 123");
-  this.render(hbs`{{tag-area screenText=chars}}`);
-
-  $('.tag-area').get(0).setSelectionRange(0, 0);
-  let e = $.Event("keyup", { keyCode: 39 });
-  $('.tag-area').trigger(e);
-
-  Ember.run.later(() => {
-    assert.equal(this.$('.cursor-index').text(), 1, 'Cursor starts at end of text');
-    done();
-  }, 250);
 });
